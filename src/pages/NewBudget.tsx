@@ -49,22 +49,22 @@ const NewBudget = () => {
     
     const breakdown = {
       materials: {
-        concrete: area * 45,
-        steel: area * 28,
-        bricks: area * 82,
-        tiles: area * 35,
-        paint: area * 15,
-        windows: rooms * 800,
-        doors: rooms * 600,
-        plumbing: bathrooms * 1200,
-        electrical: area * 25
+        concreto: area * 45,
+        aco: area * 28,
+        tijolos: area * 82,
+        revestimento: area * 35,
+        tinta: area * 15,
+        janelas: rooms * 800,
+        portas: rooms * 600,
+        hidraulica: bathrooms * 1200,
+        eletrica: area * 25
       },
       labor: {
-        construction: area * 180,
-        masonry: area * 120,
-        electrical: area * 45,
-        plumbing: bathrooms * 400,
-        painting: area * 35
+        construcao: area * 180,
+        alvenaria: area * 120,
+        eletricista: area * 45,
+        encanador: bathrooms * 400,
+        pintura: area * 35
       }
     };
 
