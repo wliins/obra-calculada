@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Building2, Calculator, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
