@@ -19,7 +19,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
 
   const navigation = [
-    { name: "Dashboard", href: "/dashboard", icon: Home },
+    { name: "Painel", href: "/dashboard", icon: Home },
     { name: "Novo Orçamento", href: "/new-budget", icon: Plus },
     { name: "Histórico", href: "/budget-history", icon: History },
     { name: "Configurações", href: "/settings", icon: Settings },
@@ -36,7 +36,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground">ObraCalculada</h1>
-              <p className="text-xs text-muted-foreground">Dashboard</p>
+              <p className="text-xs text-muted-foreground">Painel</p>
             </div>
           </Link>
 

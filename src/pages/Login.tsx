@@ -25,7 +25,7 @@ const Login = () => {
           <div>
             <h1 className="text-2xl font-bold">Entrar na sua conta</h1>
             <p className="text-muted-foreground">
-              Digite suas credenciais para acessar o dashboard
+              Digite suas credenciais para acessar o painel
             </p>
           </div>
         </div>
@@ -33,7 +33,7 @@ const Login = () => {
         {/* Login Form */}
         <Card className="shadow-glow border-border/50">
           <CardHeader>
-            <CardTitle>Login</CardTitle>
+            <CardTitle>Entrar</CardTitle>
             <CardDescription>
               Bem-vindo de volta ao ObraCalculada
             </CardDescription>
@@ -78,7 +78,7 @@ const Login = () => {
               <p className="text-sm text-muted-foreground">
                 Não tem uma conta?{" "}
                 <Link to="/register" className="text-primary hover:underline">
-                  Cadastre-se grátis
+                  Cadastrar grátis
                 </Link>
               </p>
             </div>
@@ -89,13 +89,13 @@ const Login = () => {
         <Card className="border-accent/20">
           <CardContent className="pt-6">
             <div className="text-center space-y-3">
-              <h3 className="font-semibold text-accent">Acesso Demo</h3>
+              <h3 className="font-semibold text-accent">Acesso à Demonstração</h3>
               <p className="text-sm text-muted-foreground">
                 Quer testar antes? Experimente nossa demonstração
               </p>
               <Link to="/demo">
                 <Button variant="accent" className="w-full">
-                  Acessar Demo
+                  Acessar Demonstração
                 </Button>
               </Link>
             </div>

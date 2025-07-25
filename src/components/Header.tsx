@@ -27,7 +27,7 @@ const Header = () => {
             Sobre
           </Link>
           <Link to="/demo" className="text-muted-foreground hover:text-foreground transition-colors">
-            Demo
+            Demonstração
           </Link>
         </nav>
 

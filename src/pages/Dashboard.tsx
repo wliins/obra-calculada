@@ -77,7 +77,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <h1 className="text-3xl font-bold">Painel</h1>
             <p className="text-muted-foreground">
               Bem-vindo de volta! Aqui está um resumo dos seus projetos.
             </p>
