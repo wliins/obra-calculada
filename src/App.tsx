@@ -13,6 +13,7 @@ import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Demo from "./pages/Demo";
 import PriceSettings from "./pages/PriceSettings";
+import IndividualCalculators from "./pages/IndividualCalculators";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/budget-history" element={<BudgetHistory />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/price-settings" element={<PriceSettings />} />
+          <Route path="/individual-calculators" element={<IndividualCalculators />} />
           <Route path="/about" element={<About />} />
           <Route path="/demo" element={<Demo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

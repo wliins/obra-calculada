@@ -22,8 +22,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navigation = [
     { name: "Painel", href: "/dashboard", icon: Home },
     { name: "Novo Orçamento", href: "/new-budget", icon: Plus },
+    { name: "Calculadoras", href: "/individual-calculators", icon: Calculator },
     { name: "Histórico", href: "/budget-history", icon: History },
-    { name: "Preços", href: "/price-settings", icon: Calculator },
+    { name: "Preços", href: "/price-settings", icon: Settings },
     { name: "Configurações", href: "/settings", icon: Settings },
   ];
 
