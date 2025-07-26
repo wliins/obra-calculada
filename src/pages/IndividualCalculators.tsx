@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { 
-  FileText as PlanIcon, 
+  PenTool, 
   Building, 
   Zap, 
   Droplets, 
@@ -49,7 +49,7 @@ const serviceCalculators: ServiceCalculator[] = [
     id: "projeto-arquitetonico",
     name: "Projeto Arquitetônico",
     description: "Cálculo para desenvolvimento de projeto arquitetônico",
-    icon: PlanIcon,
+    icon: PenTool,
     inputs: [
       { id: "area", label: "Área do projeto", type: "number", unit: "m²", required: true },
       { id: "pavimentos", label: "Número de pavimentos", type: "number", required: true },
