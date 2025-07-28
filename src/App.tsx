@@ -12,6 +12,7 @@ import BudgetHistory from "./pages/BudgetHistory";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Demo from "./pages/Demo";
+import Sales from "./pages/Sales";
 import PriceSettings from "./pages/PriceSettings";
 
 import NotFound from "./pages/NotFound";
@@ -36,6 +37,7 @@ const App = () => (
           
           <Route path="/about" element={<About />} />
           <Route path="/demo" element={<Demo />} />
+          <Route path="/sales" element={<Sales />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

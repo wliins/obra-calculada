@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calculator, Clock, TrendingUp, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-construction.jpg";
 
 const HeroSection = () => {
@@ -35,13 +36,17 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
-                Começar Grátis
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Ver Demonstração
-              </Button>
+              <Link to="/register">
+                <Button variant="hero" size="lg" className="group">
+                  Começar Grátis
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/demo">
+                <Button variant="outline" size="lg">
+                  Ver Demonstração
+                </Button>
+              </Link>
             </div>
 
             <div className="grid grid-cols-3 gap-6 pt-8">

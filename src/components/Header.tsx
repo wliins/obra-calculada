@@ -26,9 +26,12 @@ const Header = () => {
           <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
             Sobre
           </Link>
-          <Link to="/demo" className="text-muted-foreground hover:text-foreground transition-colors">
-            Demonstração
-          </Link>
+           <Link to="/demo" className="text-muted-foreground hover:text-foreground transition-colors">
+             Demonstração
+           </Link>
+           <Link to="/sales" className="text-muted-foreground hover:text-foreground transition-colors">
+             Vendas
+           </Link>
         </nav>
 
         <div className="flex items-center gap-3">
