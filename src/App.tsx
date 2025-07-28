@@ -13,6 +13,7 @@ import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Demo from "./pages/Demo";
 import Sales from "./pages/Sales";
+import CalculatorSettings from "./pages/CalculatorSettings";
 import PriceSettings from "./pages/PriceSettings";
 
 import NotFound from "./pages/NotFound";
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/new-budget" element={<NewBudget />} />
           <Route path="/budget-history" element={<BudgetHistory />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/calculator-settings" element={<CalculatorSettings />} />
           <Route path="/price-settings" element={<PriceSettings />} />
           
           <Route path="/about" element={<About />} />

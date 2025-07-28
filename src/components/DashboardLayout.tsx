@@ -8,7 +8,8 @@ import {
   LogOut,
   User,
   Bell,
-  Calculator
+  Calculator,
+  DollarSign
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -23,7 +24,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: "Painel", href: "/dashboard", icon: Home },
     { name: "Novo Orçamento", href: "/new-budget", icon: Plus },
     { name: "Histórico", href: "/budget-history", icon: History },
-    { name: "Preços", href: "/price-settings", icon: Settings },
+    { name: "Configurar Calculadoras", href: "/calculator-settings", icon: Calculator },
+    { name: "Preços e Custos", href: "/price-settings", icon: DollarSign },
     { name: "Configurações", href: "/settings", icon: Settings },
   ];
 
