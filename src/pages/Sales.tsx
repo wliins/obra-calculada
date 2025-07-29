@@ -109,7 +109,7 @@ const Sales = () => {
               ⚡ OFERTA LIMITADA - 50% OFF
             </Badge>
             
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold leading-tight">
               Pare de Perder
               <span className="block bg-gradient-hero bg-clip-text text-transparent">
                 Dinheiro e Tempo
@@ -117,28 +117,28 @@ const Sales = () => {
               com Orçamentos Manuais
             </h1>
             
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               <strong className="text-destructive">78% dos profissionais</strong> perdem contratos por orçamentos 
               imprecisos ou demorados. Você não precisa ser um deles.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
               {urgency.map((item, index) => (
-                <Badge key={index} variant="destructive" className="text-sm px-3 py-1">
+                <Badge key={index} variant="destructive" className="text-xs sm:text-sm px-2 sm:px-3 py-1">
                   {item}
                 </Badge>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
-                <Button variant="hero" size="lg" className="group text-lg px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+              <Link to="/register" className="w-full sm:w-auto">
+                <Button variant="hero" size="lg" className="group text-base sm:text-lg px-6 sm:px-8 py-4 w-full sm:w-auto">
                   GARANTIR MINHA VAGA AGORA
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/demo">
-                <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+              <Link to="/demo" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 w-full sm:w-auto">
                   Ver Demonstração Gratuita
                 </Button>
               </Link>
@@ -151,24 +151,24 @@ const Sales = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4">
               Você Está Perdendo Dinheiro Todos os Dias
             </h2>
-            <p className="text-xl text-center text-muted-foreground mb-12">
+            <p className="text-lg sm:text-xl text-center text-muted-foreground mb-12">
               Enquanto você faz orçamentos manuais, seus concorrentes já estão usando automação
             </p>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {problems.map((problem, index) => (
                 <Card key={index} className="border-destructive/20">
                   <CardHeader className="text-center">
-                    <div className="bg-destructive/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <problem.icon className="h-8 w-8 text-destructive" />
+                    <div className="bg-destructive/10 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <problem.icon className="h-6 w-6 sm:h-8 sm:w-8 text-destructive" />
                     </div>
-                    <CardTitle className="text-xl">{problem.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl">{problem.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-center text-muted-foreground">{problem.description}</p>
+                    <p className="text-center text-muted-foreground text-sm sm:text-base">{problem.description}</p>
                   </CardContent>
                 </Card>
               ))}

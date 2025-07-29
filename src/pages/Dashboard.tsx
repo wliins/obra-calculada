@@ -75,17 +75,18 @@ const Dashboard = () => {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Painel</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl lg:text-3xl font-bold">Painel</h1>
+            <p className="text-muted-foreground text-sm lg:text-base">
               Bem-vindo de volta! Aqui está um resumo dos seus projetos.
             </p>
           </div>
-          <Link to="/new-budget">
-            <Button variant="hero" size="lg" className="group">
+          <Link to="/new-budget" className="w-full sm:w-auto">
+            <Button variant="hero" size="lg" className="group w-full sm:w-auto">
               <Plus className="h-4 w-4" />
-              Novo Orçamento
+              <span className="hidden sm:inline">Novo Orçamento</span>
+              <span className="sm:hidden">Novo</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -127,31 +128,33 @@ const Dashboard = () => {
           <CardContent>
             <div className="space-y-4">
               {recentBudgets.map((budget) => (
-                <div 
-                  key={budget.id} 
-                  className="flex items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors"
-                >
-                  <div className="space-y-1">
-                    <h4 className="font-medium">{budget.project}</h4>
-                    <p className="text-sm text-muted-foreground">{budget.client}</p>
-                  </div>
-                  <div className="text-right space-y-1">
-                    <p className="font-semibold">{budget.value}</p>
-                    <div className="flex items-center gap-2">
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        budget.status === "Aprovado" 
-                          ? "bg-success/10 text-success" 
-                          : budget.status === "Em análise"
-                          ? "bg-warning/10 text-warning"
-                          : "bg-muted text-muted-foreground"
-                      }`}>
-                        {budget.status}
-                      </span>
-                      <Calendar className="h-3 w-3 text-muted-foreground" />
-                      <span className="text-xs text-muted-foreground">{budget.date}</span>
-                    </div>
-                  </div>
-                </div>
+                 <div 
+                   key={budget.id} 
+                   className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors gap-3"
+                 >
+                   <div className="space-y-1 flex-1 min-w-0">
+                     <h4 className="font-medium truncate">{budget.project}</h4>
+                     <p className="text-sm text-muted-foreground truncate">{budget.client}</p>
+                   </div>
+                   <div className="sm:text-right space-y-1 flex-shrink-0">
+                     <p className="font-semibold">{budget.value}</p>
+                     <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                       <span className={`text-xs px-2 py-1 rounded-full text-center ${
+                         budget.status === "Aprovado" 
+                           ? "bg-success/10 text-success" 
+                           : budget.status === "Em análise"
+                           ? "bg-warning/10 text-warning"
+                           : "bg-muted text-muted-foreground"
+                       }`}>
+                         {budget.status}
+                       </span>
+                       <div className="flex items-center gap-1 justify-center sm:justify-start">
+                         <Calendar className="h-3 w-3 text-muted-foreground" />
+                         <span className="text-xs text-muted-foreground">{budget.date}</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
               ))}
             </div>
           </CardContent>
