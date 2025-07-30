@@ -181,24 +181,24 @@ const NewBudget = () => {
     const total = materials + labor;
     
     const breakdown = {
-      materials: {
-        concreto: area * 45,
-        aco: area * 28,
-        tijolos: area * 82,
-        revestimento: area * 35,
-        tinta: area * 15,
-        janelas: rooms * 800,
-        portas: rooms * 600,
-        hidraulica: bathrooms * 1200,
-        eletrica: area * 25
-      },
-      labor: {
-        construcao: area * 180,
-        alvenaria: area * 120,
-        eletricista: area * 45,
-        encanador: bathrooms * 400,
-        pintura: area * 35
-      }
+      materials: [
+        { name: "Concreto", quantity: Math.round(area * 0.15), unit: "m³", unitPrice: 300, total: area * 45 },
+        { name: "Aço", quantity: Math.round(area * 7), unit: "kg", unitPrice: 4, total: area * 28 },
+        { name: "Tijolos", quantity: Math.round(area * 25), unit: "unidades", unitPrice: 3.28, total: area * 82 },
+        { name: "Revestimento", quantity: Math.round(area * 2.5), unit: "m²", unitPrice: 14, total: area * 35 },
+        { name: "Tinta", quantity: Math.round(area * 0.5), unit: "litros", unitPrice: 30, total: area * 15 },
+        { name: "Janelas", quantity: rooms, unit: "unidades", unitPrice: 800, total: rooms * 800 },
+        { name: "Portas", quantity: rooms + 1, unit: "unidades", unitPrice: 600, total: (rooms + 1) * 600 },
+        { name: "Material Hidráulico", quantity: bathrooms, unit: "conjunto", unitPrice: 1200, total: bathrooms * 1200 },
+        { name: "Material Elétrico", quantity: Math.round(area * 0.8), unit: "pontos", unitPrice: 31.25, total: area * 25 }
+      ],
+      labor: [
+        { name: "Construção/Estrutura", hours: Math.round(area * 4), unit: "horas", hourlyRate: 45, total: area * 180 },
+        { name: "Alvenaria", hours: Math.round(area * 3), unit: "horas", hourlyRate: 40, total: area * 120 },
+        { name: "Eletricista", hours: Math.round(area * 1.5), unit: "horas", hourlyRate: 30, total: area * 45 },
+        { name: "Encanador", hours: Math.round(bathrooms * 10), unit: "horas", hourlyRate: 40, total: bathrooms * 400 },
+        { name: "Pintura", hours: Math.round(area * 1.2), unit: "horas", hourlyRate: 29.17, total: area * 35 }
+      ]
     };
 
     setCalculation({
@@ -214,8 +214,8 @@ const NewBudget = () => {
     const calculator = calculators.find(c => c.id === calculatorId);
     if (!calculator) return;
 
-    const materials: Record<string, number> = {};
-    const labor: Record<string, number> = {};
+    const materials: any[] = [];
+    const labor: any[] = [];
 
     // Aplicar multiplicadores baseados em seleções
     let complexityMultiplier = 1;
@@ -226,32 +226,60 @@ const NewBudget = () => {
     if (inputs.tipo === "Estrutura metálica") complexityMultiplier = 1.4;
     if (inputs.tipo === "Madeira") complexityMultiplier = 0.8;
 
-    // Calcular materiais
+    // Calcular materiais com quantidades detalhadas
     calculator.materials.forEach(item => {
       const formula = item.formula.replace(/(\w+)/g, (match) => {
         return inputs[match] || match;
       });
       try {
-        materials[item.name] = Math.round(eval(formula) * complexityMultiplier);
+        const cost = Math.round(eval(formula) * complexityMultiplier);
+        const quantity = getQuantityForItem(item.name, inputs, complexityMultiplier);
+        materials.push({
+          name: item.name,
+          quantity: quantity.amount,
+          unit: quantity.unit,
+          unitPrice: Math.round(cost / quantity.amount),
+          total: cost
+        });
       } catch {
-        materials[item.name] = 0;
+        materials.push({
+          name: item.name,
+          quantity: 0,
+          unit: "unidades",
+          unitPrice: 0,
+          total: 0
+        });
       }
     });
 
-    // Calcular mão de obra
+    // Calcular mão de obra com horas detalhadas
     calculator.labor.forEach(item => {
       const formula = item.formula.replace(/(\w+)/g, (match) => {
         return inputs[match] || match;
       });
       try {
-        labor[item.name] = Math.round(eval(formula) * complexityMultiplier);
+        const cost = Math.round(eval(formula) * complexityMultiplier);
+        const hours = getLaborHoursForItem(item.name, inputs, complexityMultiplier);
+        labor.push({
+          name: item.name,
+          hours: hours,
+          unit: "horas",
+          hourlyRate: Math.round(cost / hours),
+          total: cost
+        });
       } catch {
-        labor[item.name] = 0;
+        labor.push({
+          name: item.name,
+          hours: 0,
+          unit: "horas",
+          hourlyRate: 0,
+          total: 0
+        });
       }
     });
 
-    const totalMaterials = Object.values(materials).reduce((a, b) => a + b, 0);
-    const totalLabor = Object.values(labor).reduce((a, b) => a + b, 0);
+    const totalMaterials = materials.reduce((sum, item) => sum + item.total, 0);
+    const totalLabor = labor.reduce((sum, item) => sum + item.total, 0);
     const total = totalMaterials + totalLabor;
 
     setCalculatorResults({
@@ -265,6 +293,69 @@ const NewBudget = () => {
         inputs
       }
     });
+  };
+
+  // Função auxiliar para calcular quantidades específicas de materiais
+  const getQuantityForItem = (itemName: string, inputs: any, multiplier: number) => {
+    const area = inputs.area || 0;
+    const pontos = inputs.pontos || 0;
+    const pavimentos = inputs.pavimentos || 1;
+
+    const quantities: Record<string, any> = {
+      "Levantamento topográfico": { amount: Math.round(area * 0.1 * multiplier), unit: "serviços" },
+      "Plantas arquitetônicas": { amount: Math.round(pavimentos * multiplier), unit: "pranchas" },
+      "Cortes e fachadas": { amount: Math.round(pavimentos * 2 * multiplier), unit: "pranchas" },
+      "Detalhamentos": { amount: Math.round(area * 0.05 * multiplier), unit: "detalhes" },
+      "Sondagem do solo": { amount: Math.round(area * 0.02 * multiplier), unit: "furos" },
+      "Cálculos estruturais": { amount: Math.round(area * 0.1 * multiplier), unit: "serviços" },
+      "Plantas de formas": { amount: Math.round(pavimentos * multiplier), unit: "pranchas" },
+      "Detalhamento de armaduras": { amount: Math.round(area * 0.08 * multiplier), unit: "pranchas" },
+      "Projeto de água fria": { amount: Math.round(pontos * 0.5 * multiplier), unit: "pontos" },
+      "Projeto de esgoto": { amount: Math.round(pontos * 0.6 * multiplier), unit: "pontos" },
+      "Projeto de águas pluviais": { amount: Math.round(area * 0.02 * multiplier), unit: "m²" },
+      "Especificações técnicas": { amount: Math.round(pontos * 0.3 * multiplier), unit: "itens" },
+      "Projeto elétrico básico": { amount: Math.round(pontos * 0.8 * multiplier), unit: "pontos" },
+      "Dimensionamento de quadros": { amount: Math.round((inputs.potencia || 0) * 0.1 * multiplier), unit: "quadros" },
+      "SPDA": { amount: Math.round(area * 0.01 * multiplier), unit: "m²" },
+      "Memorial descritivo": { amount: Math.round(pontos * 0.2 * multiplier), unit: "páginas" },
+      "Fundação": { amount: Math.round(area * 0.2 * multiplier), unit: "m³" },
+      "Estrutura": { amount: Math.round(area * 0.15 * multiplier), unit: "m³" },
+      "Alvenaria": { amount: Math.round(area * 25 * multiplier), unit: "m²" },
+      "Cobertura": { amount: Math.round(area * 1.2 * multiplier), unit: "m²" },
+      "Instalações": { amount: Math.round(area * 0.5 * multiplier), unit: "conjuntos" },
+      "Acabamentos": { amount: Math.round(area * 2 * multiplier), unit: "m²" }
+    };
+
+    return quantities[itemName] || { amount: Math.round(1 * multiplier), unit: "unidades" };
+  };
+
+  // Função auxiliar para calcular horas de mão de obra
+  const getLaborHoursForItem = (itemName: string, inputs: any, multiplier: number) => {
+    const area = inputs.area || 0;
+    const pontos = inputs.pontos || 0;
+
+    const hours: Record<string, number> = {
+      "Arquiteto": Math.round(area * 0.5 * multiplier),
+      "Desenhista técnico": Math.round(area * 0.3 * multiplier),
+      "Consultorias especializadas": Math.round(area * 0.2 * multiplier),
+      "Engenheiro estrutural": Math.round(area * 0.8 * multiplier),
+      "Projetista": Math.round(area * 0.4 * multiplier),
+      "Verificação e revisão": Math.round(area * 0.2 * multiplier),
+      "Engenheiro hidráulico": Math.round(pontos * 1.2 * multiplier),
+      "Projetista hidráulico": Math.round(pontos * 0.6 * multiplier),
+      "Verificação técnica": Math.round(pontos * 0.3 * multiplier),
+      "Engenheiro eletricista": Math.round(pontos * 1 * multiplier),
+      "Projetista elétrico": Math.round(pontos * 0.5 * multiplier),
+      "Verificação e cálculos": Math.round((inputs.potencia || 0) * 2 * multiplier),
+      "Fundação": Math.round(area * 2 * multiplier),
+      "Estrutura": Math.round(area * 3.5 * multiplier),
+      "Alvenaria": Math.round(area * 2.5 * multiplier),
+      "Cobertura": Math.round(area * 1.8 * multiplier),
+      "Instalações": Math.round(area * 2.2 * multiplier),
+      "Acabamentos": Math.round(area * 3 * multiplier)
+    };
+
+    return hours[itemName] || Math.round(8 * multiplier);
   };
 
   const handleCalculatorInputChange = (calculatorId: string, field: string, value: any) => {
@@ -402,16 +493,27 @@ const NewBudget = () => {
                             <Package className="h-4 w-4" />
                             Materiais
                           </h4>
-                          <div className="space-y-2">
-                            {Object.entries(calculation.breakdown.materials).map(([item, cost]) => (
-                              <div key={item} className="flex justify-between items-center">
-                                <span className="text-sm capitalize">{item.replace(/([A-Z])/g, ' $1')}</span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                  }).format(cost as number)}
-                                </span>
+                          <div className="space-y-3">
+                            {calculation.breakdown.materials.map((item: any, index: number) => (
+                              <div key={index} className="border rounded-lg p-3 space-y-1">
+                                <div className="flex justify-between items-start">
+                                  <span className="font-medium text-sm">{item.name}</span>
+                                  <span className="font-bold">
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.total)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                  <span>{item.quantity} {item.unit}</span>
+                                  <span>
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.unitPrice)}/{item.unit}
+                                  </span>
+                                </div>
                               </div>
                             ))}
                           </div>
@@ -423,16 +525,27 @@ const NewBudget = () => {
                             <Users className="h-4 w-4" />
                             Mão de Obra
                           </h4>
-                          <div className="space-y-2">
-                            {Object.entries(calculation.breakdown.labor).map(([item, cost]) => (
-                              <div key={item} className="flex justify-between items-center">
-                                <span className="text-sm capitalize">{item.replace(/([A-Z])/g, ' $1')}</span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                  }).format(cost as number)}
-                                </span>
+                          <div className="space-y-3">
+                            {calculation.breakdown.labor.map((item: any, index: number) => (
+                              <div key={index} className="border rounded-lg p-3 space-y-1">
+                                <div className="flex justify-between items-start">
+                                  <span className="font-medium text-sm">{item.name}</span>
+                                  <span className="font-bold">
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.total)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                  <span>{item.hours} {item.unit}</span>
+                                  <span>
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.hourlyRate)}/hora
+                                  </span>
+                                </div>
                               </div>
                             ))}
                           </div>
@@ -640,16 +753,27 @@ const NewBudget = () => {
                             <Package className="h-4 w-4" />
                             Materiais/Serviços
                           </h4>
-                          <div className="space-y-2">
-                            {Object.entries(calculatorResults[selectedCalculator].materials).map(([item, cost]) => (
-                              <div key={item} className="flex justify-between items-center">
-                                <span className="text-sm">{item}</span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                  }).format(cost as number)}
-                                </span>
+                          <div className="space-y-3">
+                            {calculatorResults[selectedCalculator].materials.map((item: any, index: number) => (
+                              <div key={index} className="border rounded-lg p-3 space-y-1">
+                                <div className="flex justify-between items-start">
+                                  <span className="font-medium text-sm">{item.name}</span>
+                                  <span className="font-bold">
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.total)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                  <span>{item.quantity} {item.unit}</span>
+                                  <span>
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.unitPrice)}/{item.unit}
+                                  </span>
+                                </div>
                               </div>
                             ))}
                           </div>
@@ -661,16 +785,27 @@ const NewBudget = () => {
                             <Users className="h-4 w-4" />
                             Mão de Obra
                           </h4>
-                          <div className="space-y-2">
-                            {Object.entries(calculatorResults[selectedCalculator].labor).map(([item, cost]) => (
-                              <div key={item} className="flex justify-between items-center">
-                                <span className="text-sm">{item}</span>
-                                <span className="font-medium">
-                                  {new Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                  }).format(cost as number)}
-                                </span>
+                          <div className="space-y-3">
+                            {calculatorResults[selectedCalculator].labor.map((item: any, index: number) => (
+                              <div key={index} className="border rounded-lg p-3 space-y-1">
+                                <div className="flex justify-between items-start">
+                                  <span className="font-medium text-sm">{item.name}</span>
+                                  <span className="font-bold">
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.total)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-xs text-muted-foreground">
+                                  <span>{item.hours} {item.unit}</span>
+                                  <span>
+                                    {new Intl.NumberFormat('pt-BR', {
+                                      style: 'currency',
+                                      currency: 'BRL'
+                                    }).format(item.hourlyRate)}/hora
+                                  </span>
+                                </div>
                               </div>
                             ))}
                           </div>
