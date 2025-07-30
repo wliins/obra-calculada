@@ -25,6 +25,7 @@ import {
   Home,
   Search
 } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface BudgetData {
   projectName: string;
@@ -489,65 +490,103 @@ const NewBudget = () => {
                       <CardContent className="space-y-6">
                         {/* Materials */}
                         <div>
-                          <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <h4 className="font-semibold mb-4 flex items-center gap-2">
                             <Package className="h-4 w-4" />
-                            Materiais
+                            Composição de Materiais
                           </h4>
-                          <div className="space-y-3">
-                            {calculation.breakdown.materials.map((item: any, index: number) => (
-                              <div key={index} className="border rounded-lg p-3 space-y-1">
-                                <div className="flex justify-between items-start">
-                                  <span className="font-medium text-sm">{item.name}</span>
-                                  <span className="font-bold">
+                          <div className="border rounded-lg overflow-hidden">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/50">
+                                  <TableHead className="font-semibold">Material</TableHead>
+                                  <TableHead className="text-center font-semibold">Qtd</TableHead>
+                                  <TableHead className="text-center font-semibold">Unidade</TableHead>
+                                  <TableHead className="text-right font-semibold">Valor Unit.</TableHead>
+                                  <TableHead className="text-right font-semibold">Total</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {calculation.breakdown.materials.map((item: any, index: number) => (
+                                  <TableRow key={index} className="hover:bg-muted/30">
+                                    <TableCell className="font-medium">{item.name}</TableCell>
+                                    <TableCell className="text-center">{item.quantity.toLocaleString('pt-BR')}</TableCell>
+                                    <TableCell className="text-center">{item.unit}</TableCell>
+                                    <TableCell className="text-right">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.unitPrice)}
+                                    </TableCell>
+                                    <TableCell className="text-right font-semibold">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.total)}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="border-t-2 bg-muted/30">
+                                  <TableCell colSpan={4} className="font-bold">Subtotal Materiais</TableCell>
+                                  <TableCell className="text-right font-bold text-primary">
                                     {new Intl.NumberFormat('pt-BR', {
                                       style: 'currency',
                                       currency: 'BRL'
-                                    }).format(item.total)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between text-xs text-muted-foreground">
-                                  <span>{item.quantity} {item.unit}</span>
-                                  <span>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                      style: 'currency',
-                                      currency: 'BRL'
-                                    }).format(item.unitPrice)}/{item.unit}
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
+                                    }).format(calculation.materials)}
+                                  </TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
                           </div>
                         </div>
 
                         {/* Labor */}
                         <div>
-                          <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <h4 className="font-semibold mb-4 flex items-center gap-2">
                             <Users className="h-4 w-4" />
-                            Mão de Obra
+                            Composição de Mão de Obra
                           </h4>
-                          <div className="space-y-3">
-                            {calculation.breakdown.labor.map((item: any, index: number) => (
-                              <div key={index} className="border rounded-lg p-3 space-y-1">
-                                <div className="flex justify-between items-start">
-                                  <span className="font-medium text-sm">{item.name}</span>
-                                  <span className="font-bold">
+                          <div className="border rounded-lg overflow-hidden">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/50">
+                                  <TableHead className="font-semibold">Serviço</TableHead>
+                                  <TableHead className="text-center font-semibold">Horas</TableHead>
+                                  <TableHead className="text-center font-semibold">Unidade</TableHead>
+                                  <TableHead className="text-right font-semibold">Valor/Hora</TableHead>
+                                  <TableHead className="text-right font-semibold">Total</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {calculation.breakdown.labor.map((item: any, index: number) => (
+                                  <TableRow key={index} className="hover:bg-muted/30">
+                                    <TableCell className="font-medium">{item.name}</TableCell>
+                                    <TableCell className="text-center">{item.hours.toLocaleString('pt-BR')}</TableCell>
+                                    <TableCell className="text-center">{item.unit}</TableCell>
+                                    <TableCell className="text-right">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.hourlyRate)}
+                                    </TableCell>
+                                    <TableCell className="text-right font-semibold">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.total)}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="border-t-2 bg-muted/30">
+                                  <TableCell colSpan={4} className="font-bold">Subtotal Mão de Obra</TableCell>
+                                  <TableCell className="text-right font-bold text-primary">
                                     {new Intl.NumberFormat('pt-BR', {
                                       style: 'currency',
                                       currency: 'BRL'
-                                    }).format(item.total)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between text-xs text-muted-foreground">
-                                  <span>{item.hours} {item.unit}</span>
-                                  <span>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                      style: 'currency',
-                                      currency: 'BRL'
-                                    }).format(item.hourlyRate)}/hora
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
+                                    }).format(calculation.labor)}
+                                  </TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
                           </div>
                         </div>
                       </CardContent>
@@ -749,65 +788,103 @@ const NewBudget = () => {
                       <CardContent className="space-y-6">
                         {/* Materials */}
                         <div>
-                          <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <h4 className="font-semibold mb-4 flex items-center gap-2">
                             <Package className="h-4 w-4" />
-                            Materiais/Serviços
+                            Composição de Materiais/Serviços
                           </h4>
-                          <div className="space-y-3">
-                            {calculatorResults[selectedCalculator].materials.map((item: any, index: number) => (
-                              <div key={index} className="border rounded-lg p-3 space-y-1">
-                                <div className="flex justify-between items-start">
-                                  <span className="font-medium text-sm">{item.name}</span>
-                                  <span className="font-bold">
+                          <div className="border rounded-lg overflow-hidden">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/50">
+                                  <TableHead className="font-semibold">Item</TableHead>
+                                  <TableHead className="text-center font-semibold">Qtd</TableHead>
+                                  <TableHead className="text-center font-semibold">Unidade</TableHead>
+                                  <TableHead className="text-right font-semibold">Valor Unit.</TableHead>
+                                  <TableHead className="text-right font-semibold">Total</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {calculatorResults[selectedCalculator].materials.map((item: any, index: number) => (
+                                  <TableRow key={index} className="hover:bg-muted/30">
+                                    <TableCell className="font-medium">{item.name}</TableCell>
+                                    <TableCell className="text-center">{item.quantity.toLocaleString('pt-BR')}</TableCell>
+                                    <TableCell className="text-center">{item.unit}</TableCell>
+                                    <TableCell className="text-right">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.unitPrice)}
+                                    </TableCell>
+                                    <TableCell className="text-right font-semibold">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.total)}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="border-t-2 bg-muted/30">
+                                  <TableCell colSpan={4} className="font-bold">Subtotal Materiais</TableCell>
+                                  <TableCell className="text-right font-bold text-primary">
                                     {new Intl.NumberFormat('pt-BR', {
                                       style: 'currency',
                                       currency: 'BRL'
-                                    }).format(item.total)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between text-xs text-muted-foreground">
-                                  <span>{item.quantity} {item.unit}</span>
-                                  <span>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                      style: 'currency',
-                                      currency: 'BRL'
-                                    }).format(item.unitPrice)}/{item.unit}
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
+                                    }).format(calculatorResults[selectedCalculator].totalMaterials)}
+                                  </TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
                           </div>
                         </div>
 
                         {/* Labor */}
                         <div>
-                          <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <h4 className="font-semibold mb-4 flex items-center gap-2">
                             <Users className="h-4 w-4" />
-                            Mão de Obra
+                            Composição de Mão de Obra
                           </h4>
-                          <div className="space-y-3">
-                            {calculatorResults[selectedCalculator].labor.map((item: any, index: number) => (
-                              <div key={index} className="border rounded-lg p-3 space-y-1">
-                                <div className="flex justify-between items-start">
-                                  <span className="font-medium text-sm">{item.name}</span>
-                                  <span className="font-bold">
+                          <div className="border rounded-lg overflow-hidden">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/50">
+                                  <TableHead className="font-semibold">Profissional</TableHead>
+                                  <TableHead className="text-center font-semibold">Horas</TableHead>
+                                  <TableHead className="text-center font-semibold">Unidade</TableHead>
+                                  <TableHead className="text-right font-semibold">Valor/Hora</TableHead>
+                                  <TableHead className="text-right font-semibold">Total</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {calculatorResults[selectedCalculator].labor.map((item: any, index: number) => (
+                                  <TableRow key={index} className="hover:bg-muted/30">
+                                    <TableCell className="font-medium">{item.name}</TableCell>
+                                    <TableCell className="text-center">{item.hours.toLocaleString('pt-BR')}</TableCell>
+                                    <TableCell className="text-center">{item.unit}</TableCell>
+                                    <TableCell className="text-right">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.hourlyRate)}
+                                    </TableCell>
+                                    <TableCell className="text-right font-semibold">
+                                      {new Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL'
+                                      }).format(item.total)}
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="border-t-2 bg-muted/30">
+                                  <TableCell colSpan={4} className="font-bold">Subtotal Mão de Obra</TableCell>
+                                  <TableCell className="text-right font-bold text-primary">
                                     {new Intl.NumberFormat('pt-BR', {
                                       style: 'currency',
                                       currency: 'BRL'
-                                    }).format(item.total)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between text-xs text-muted-foreground">
-                                  <span>{item.hours} {item.unit}</span>
-                                  <span>
-                                    {new Intl.NumberFormat('pt-BR', {
-                                      style: 'currency',
-                                      currency: 'BRL'
-                                    }).format(item.hourlyRate)}/hora
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
+                                    }).format(calculatorResults[selectedCalculator].totalLabor)}
+                                  </TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
                           </div>
                         </div>
                       </CardContent>
