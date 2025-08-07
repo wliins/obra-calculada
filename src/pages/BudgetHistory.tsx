@@ -112,22 +112,24 @@ const BudgetHistory = () => {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Histórico de Orçamentos</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl sm:text-3xl font-bold">Histórico de Orçamentos</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Gerencie e acompanhe todos os seus orçamentos
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline">
+          <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Download className="h-4 w-4" />
-              Exportar Todos
+              <span className="hidden sm:inline">Exportar Todos</span>
+              <span className="sm:hidden">Exportar</span>
             </Button>
-            <Link to="/new-budget">
-              <Button variant="hero">
+            <Link to="/new-budget" className="w-full sm:w-auto">
+              <Button variant="hero" className="w-full sm:w-auto">
                 <Plus className="h-4 w-4" />
-                Novo Orçamento
+                <span className="hidden sm:inline">Novo Orçamento</span>
+                <span className="sm:hidden">Novo</span>
               </Button>
             </Link>
           </div>

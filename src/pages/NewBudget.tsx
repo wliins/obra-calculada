@@ -379,22 +379,24 @@ const NewBudget = () => {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Novo Orçamento</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl sm:text-3xl font-bold">Novo Orçamento</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Crie um orçamento preciso e detalhado
             </p>
           </div>
           {calculation && (
-            <div className="flex gap-2">
-              <Button variant="outline">
+            <div className="flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto">
                 <Save className="h-4 w-4" />
-                Salvar Rascunho
+                <span className="hidden sm:inline">Salvar Rascunho</span>
+                <span className="sm:hidden">Salvar</span>
               </Button>
-              <Button variant="accent">
+              <Button variant="accent" className="w-full sm:w-auto">
                 <Download className="h-4 w-4" />
-                Exportar PDF
+                <span className="hidden sm:inline">Exportar PDF</span>
+                <span className="sm:hidden">PDF</span>
               </Button>
             </div>
           )}

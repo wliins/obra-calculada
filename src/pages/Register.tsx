@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Register = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
+      <div className="w-full max-w-sm sm:max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
           <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
@@ -25,8 +25,8 @@ const Register = () => {
           </div>
           
           <div>
-            <h1 className="text-2xl font-bold">Crie sua conta</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-xl sm:text-2xl font-bold">Crie sua conta</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Comece a automatizar seus orçamentos hoje mesmo
             </p>
           </div>
@@ -41,7 +41,7 @@ const Register = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firstName">Nome</Label>
                 <Input 

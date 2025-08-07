@@ -24,35 +24,37 @@ const Settings = () => {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold">Configurações</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold">Configurações</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Gerencie suas preferências e configurações da conta
           </p>
         </div>
 
         <Tabs defaultValue="profile" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="profile" className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              Perfil
-            </TabsTrigger>
-            <TabsTrigger value="company" className="flex items-center gap-2">
-              <Building2 className="h-4 w-4" />
-              Empresa
-            </TabsTrigger>
-            <TabsTrigger value="notifications" className="flex items-center gap-2">
-              <Bell className="h-4 w-4" />
-              Notificações
-            </TabsTrigger>
-            <TabsTrigger value="security" className="flex items-center gap-2">
-              <Shield className="h-4 w-4" />
-              Segurança
-            </TabsTrigger>
-            <TabsTrigger value="billing" className="flex items-center gap-2">
-              <CreditCard className="h-4 w-4" />
-              Cobrança
-            </TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto">
+            <TabsList className="grid w-full grid-cols-5 min-w-max">
+              <TabsTrigger value="profile" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3">
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">Perfil</span>
+              </TabsTrigger>
+              <TabsTrigger value="company" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3">
+                <Building2 className="h-4 w-4" />
+                <span className="hidden sm:inline">Empresa</span>
+              </TabsTrigger>
+              <TabsTrigger value="notifications" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3">
+                <Bell className="h-4 w-4" />
+                <span className="hidden sm:inline">Notificações</span>
+              </TabsTrigger>
+              <TabsTrigger value="security" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3">
+                <Shield className="h-4 w-4" />
+                <span className="hidden sm:inline">Segurança</span>
+              </TabsTrigger>
+              <TabsTrigger value="billing" className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3">
+                <CreditCard className="h-4 w-4" />
+                <span className="hidden sm:inline">Cobrança</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Profile Tab */}
           <TabsContent value="profile" className="space-y-6">
@@ -64,7 +66,7 @@ const Settings = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">Nome</Label>
                     <Input id="firstName" defaultValue="João" />
@@ -108,7 +110,7 @@ const Settings = () => {
                   <Label htmlFor="companyName">Nome da Empresa</Label>
                   <Input id="companyName" defaultValue="Silva Construções Ltda" />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="cnpj">CNPJ</Label>
                     <Input id="cnpj" defaultValue="12.345.678/0001-90" />
@@ -122,7 +124,7 @@ const Settings = () => {
                   <Label htmlFor="address">Endereço</Label>
                   <Input id="address" defaultValue="Rua das Construções, 123" />
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="city">Cidade</Label>
                     <Input id="city" defaultValue="São Paulo" />
@@ -160,7 +162,7 @@ const Settings = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="markup">Margem de Lucro (%)</Label>
                     <Input id="markup" type="number" defaultValue="15" />

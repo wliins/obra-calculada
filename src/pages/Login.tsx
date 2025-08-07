@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-subtle flex items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">
+      <div className="w-full max-w-sm sm:max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-4">
           <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
@@ -23,8 +23,8 @@ const Login = () => {
           </div>
           
           <div>
-            <h1 className="text-2xl font-bold">Entrar na sua conta</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-xl sm:text-2xl font-bold">Entrar na sua conta</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Digite suas credenciais para acessar o painel
             </p>
           </div>

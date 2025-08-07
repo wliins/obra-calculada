@@ -96,16 +96,17 @@ const Demo = () => {
             </div>
           </Link>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link to="/">
-              <Button variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Voltar
+              <Button variant="ghost" size="sm" className="sm:size-default">
+                <ArrowLeft className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Voltar</span>
               </Button>
             </Link>
             <Link to="/register">
-              <Button variant="hero">
-                Criar Conta Grátis
+              <Button variant="hero" size="sm" className="sm:size-default">
+                <span className="hidden sm:inline">Criar Conta Grátis</span>
+                <span className="sm:hidden">Cadastrar</span>
               </Button>
             </Link>
           </div>
@@ -120,32 +121,32 @@ const Demo = () => {
               <Play className="h-3 w-3 mr-1" />
               Demonstração Interativa
             </Badge>
-            <h1 className="text-3xl lg:text-4xl font-bold">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
               Veja Como Funciona
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               Experimente criar um orçamento real em poucos cliques. 
               Este é um exemplo com dados reais do mercado.
             </p>
           </div>
 
           {/* Progress Steps */}
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center justify-center space-x-2 sm:space-x-4 overflow-x-auto pb-2">
             {steps.map((step, index) => (
               <div key={index} className="flex items-center">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors ${
+                <div className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-colors ${
                   index <= currentStep 
                     ? "bg-primary border-primary text-primary-foreground" 
                     : "border-muted text-muted-foreground"
                 }`}>
                   {index < currentStep ? (
-                    <CheckCircle className="h-5 w-5" />
+                    <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" />
                   ) : (
-                    <span className="text-sm font-medium">{index + 1}</span>
+                    <span className="text-xs sm:text-sm font-medium">{index + 1}</span>
                   )}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className={`w-16 h-0.5 ml-2 transition-colors ${
+                  <div className={`w-8 sm:w-16 h-0.5 ml-1 sm:ml-2 transition-colors ${
                     index < currentStep ? "bg-primary" : "bg-muted"
                   }`} />
                 )}

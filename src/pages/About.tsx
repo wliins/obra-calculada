@@ -63,20 +63,20 @@ const About = () => {
       {/* Header */}
       <header className="bg-card border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
             <div className="bg-gradient-primary p-2 rounded-lg">
-              <Building2 className="h-6 w-6 text-primary-foreground" />
+              <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-foreground">ObraCalculada</h1>
+            <div className="hidden sm:block">
+              <h1 className="text-lg sm:text-xl font-bold text-foreground">ObraCalculada</h1>
               <p className="text-xs text-muted-foreground">Sobre Nós</p>
             </div>
           </Link>
           
           <Link to="/">
-            <Button variant="ghost">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Voltar ao Início
+            <Button variant="ghost" size="sm" className="sm:size-default">
+              <ArrowLeft className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Voltar ao Início</span>
             </Button>
           </Link>
         </div>
@@ -86,10 +86,10 @@ const About = () => {
         {/* Hero Section */}
         <section className="text-center space-y-6">
           <div className="space-y-4">
-            <h1 className="text-4xl lg:text-5xl font-bold">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold">
               Revolucionando a Construção Civil
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               Nascemos da necessidade de tornar os orçamentos de obras mais precisos, 
               rápidos e acessíveis para profissionais de todos os tamanhos.
             </p>
@@ -97,9 +97,9 @@ const About = () => {
         </section>
 
         {/* Story Section */}
-        <section className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Nossa História</h2>
+        <section className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="space-y-4 lg:space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-bold">Nossa História</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
                 Fundada em 2023 por uma equipe de engenheiros e desenvolvedores, 
@@ -139,12 +139,12 @@ const About = () => {
 
         {/* Values Section */}
         <section className="space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Nossos Valores</h2>
-            <p className="text-xl text-muted-foreground">
-              Os princípios que guiam nosso trabalho todos os dias
-            </p>
-          </div>
+            <div className="text-center space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold">Nossos Valores</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground">
+                Os princípios que guiam nosso trabalho todos os dias
+              </p>
+            </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
@@ -165,12 +165,12 @@ const About = () => {
 
         {/* Team Section */}
         <section className="space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Nossa Equipe</h2>
-            <p className="text-xl text-muted-foreground">
-              Profissionais apaixonados por inovação e construção civil
-            </p>
-          </div>
+            <div className="text-center space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold">Nossa Equipe</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground">
+                Profissionais apaixonados por inovação e construção civil
+              </p>
+            </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {team.map((member, index) => (
@@ -196,8 +196,8 @@ const About = () => {
         <section className="bg-muted/30 rounded-2xl p-12">
           <div className="text-center space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold">Entre em Contato</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-2xl sm:text-3xl font-bold">Entre em Contato</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground">
                 Tem dúvidas ou sugestões? Adoramos conversar!
               </p>
             </div>
