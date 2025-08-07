@@ -36,14 +36,14 @@ const Header = () => {
 
         <div className="flex items-center gap-2 lg:gap-3">
           <Link to="/login">
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
               Entrar
             </Button>
           </Link>
           <Link to="/register">
-            <Button variant="hero" size="sm" className="text-sm px-3 lg:px-4">
-              <span className="hidden sm:inline">Começar Grátis</span>
-              <span className="sm:hidden">Grátis</span>
+            <Button variant="hero" size="sm" className="text-xs sm:text-sm px-2 sm:px-3 lg:px-4">
+              <span className="hidden xs:inline sm:hidden md:inline">Começar Grátis</span>
+              <span className="xs:hidden sm:inline md:hidden">Grátis</span>
             </Button>
           </Link>
         </div>
