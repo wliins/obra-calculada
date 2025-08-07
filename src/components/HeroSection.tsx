@@ -2,18 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Calculator, Clock, TrendingUp, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-construction.jpg";
-
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background with improved gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30"></div>
       <div className="absolute inset-0 opacity-5">
-        <img 
-          src={heroImage} 
-          alt="Construction planning" 
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImage} alt="Construction planning" className="w-full h-full object-cover" />
       </div>
       
       {/* Animated background elements */}
@@ -27,7 +21,7 @@ const HeroSection = () => {
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 Orçamentos de Obras
-                <span className="block bg-gradient-hero bg-clip-text text-transparent">
+                <span className="block bg-gradient-hero bg-clip-text text-transparent py-[10px]">
                   Inteligentes
                 </span>
                 <span className="block text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-normal text-muted-foreground mt-2">
@@ -176,8 +170,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
