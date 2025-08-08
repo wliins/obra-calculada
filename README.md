@@ -1,73 +1,231 @@
-# Welcome to your Lovable project
+# 🏗️ ObraCalculada - Sistema de Orçamentos para Construção Civil
 
-## Project info
+Um sistema moderno e intuitivo para cálculo de orçamentos na construção civil, desenvolvido com React, TypeScript e Tailwind CSS.
 
-**URL**: https://lovable.dev/projects/874d0a27-61ca-4b87-8ef7-eaabc8e4b62f
+## ✨ Características Principais
 
-## How can I edit this code?
+### 🚀 **Melhorias Implementadas**
 
-There are several ways of editing your application.
+- **✅ Validação Robusta**: Sistema de validação com Zod para todos os formulários
+- **✅ Arquitetura Modular**: Componentes reutilizáveis e bem organizados
+- **✅ Gerenciamento de Estado**: Hook personalizado para orçamentos com persistência local
+- **✅ Sistema de Calculadoras Configurável**: Calculadoras flexíveis e extensíveis
+- **✅ Tratamento de Erros**: Error Boundary e feedback visual para erros
+- **✅ UX/UI Melhorada**: Interface moderna com feedback visual e loading states
+- **✅ Performance Otimizada**: Lazy loading e otimizações de renderização
+- **✅ TypeScript Completo**: Tipagem forte em todo o projeto
+- **✅ Responsivo**: Design adaptável para todos os dispositivos
 
-**Use Lovable**
+### 🎯 **Funcionalidades**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/874d0a27-61ca-4b87-8ef7-eaabc8e4b62f) and start prompting.
+- **📊 Calculadoras Especializadas**: Projetos arquitetônicos, estruturais, hidrossanitários, elétricos
+- **🏠 Construção Residencial**: Orçamentos para casas e apartamentos
+- **🔧 Reformas**: Cálculos para adequações e reformas
+- **💾 Persistência Local**: Salvamento automático no navegador
+- **📤 Exportação**: Exportar orçamentos em diferentes formatos
+- **📱 Responsivo**: Funciona perfeitamente em mobile e desktop
+- **🎨 Tema Escuro/Claro**: Suporte a múltiplos temas
+- **🔒 Validação**: Validação em tempo real dos formulários
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tecnologias Utilizadas
 
-**Use your preferred IDE**
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Validação**: Zod
+- **Roteamento**: React Router DOM
+- **Estado**: React Query + Hooks personalizados
+- **Build**: Vite
+- **Linting**: ESLint + TypeScript ESLint
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📦 Instalação
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. **Clone o repositório**
+```bash
+git clone https://github.com/seu-usuario/obra-calculada.git
+cd obra-calculada
 ```
 
-**Edit a file directly in GitHub**
+2. **Instale as dependências**
+```bash
+npm install
+# ou
+yarn install
+# ou
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. **Execute o projeto**
+```bash
+npm run dev
+# ou
+yarn dev
+# ou
+bun dev
+```
 
-**Use GitHub Codespaces**
+4. **Acesse o projeto**
+```
+http://localhost:5173
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🏗️ Estrutura do Projeto
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── ui/             # Componentes base (shadcn/ui)
+│   ├── BudgetForm.tsx  # Formulário de dados do projeto
+│   ├── CalculatorForm.tsx # Formulário de calculadoras
+│   ├── BudgetResult.tsx   # Exibição de resultados
+│   └── DashboardLayout.tsx # Layout do dashboard
+├── hooks/              # Hooks personalizados
+│   ├── useBudget.ts    # Gerenciamento de orçamentos
+│   └── use-toast.ts    # Notificações
+├── lib/                # Utilitários e configurações
+│   ├── validations.ts  # Schemas de validação (Zod)
+│   ├── calculators.ts  # Sistema de calculadoras
+│   └── utils.ts        # Funções utilitárias
+├── pages/              # Páginas da aplicação
+├── config/             # Configurações centralizadas
+└── assets/             # Recursos estáticos
+```
 
-This project is built with:
+## 🎯 Como Usar
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 1. **Criar um Novo Orçamento**
+- Acesse o dashboard
+- Clique em "Novo Orçamento"
+- Preencha os dados do projeto
+- Selecione uma calculadora
+- Configure os parâmetros específicos
+- Visualize o resultado detalhado
 
-## How can I deploy this project?
+### 2. **Tipos de Calculadoras Disponíveis**
 
-Simply open [Lovable](https://lovable.dev/projects/874d0a27-61ca-4b87-8ef7-eaabc8e4b62f) and click on Share -> Publish.
+#### 📐 **Projetos**
+- **Arquitetônico**: Desenvolvimento de projetos arquitetônicos
+- **Estrutural**: Dimensionamento de estruturas
+- **Hidrossanitário**: Sistemas de água e esgoto
+- **Elétrico**: Instalações elétricas
 
-## Can I connect a custom domain to my Lovable project?
+#### 🏗️ **Construção**
+- **Residencial**: Casas e apartamentos
+- **Reforma**: Adequações e reformas
 
-Yes, you can!
+### 3. **Gerenciar Orçamentos**
+- Visualize histórico completo
+- Edite orçamentos existentes
+- Exporte em diferentes formatos
+- Compartilhe resultados
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔧 Configuração
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Variáveis de Ambiente
+Crie um arquivo `.env.local`:
+
+```env
+VITE_BASE_URL=http://localhost:3000
+VITE_API_URL=http://localhost:3001/api
+```
+
+### Personalização de Calculadoras
+As calculadoras podem ser configuradas em `src/lib/calculators.ts`:
+
+```typescript
+export const defaultCalculators: Calculator[] = [
+  {
+    id: "minha-calculadora",
+    name: "Minha Calculadora",
+    description: "Descrição da calculadora",
+    category: "Categoria",
+    inputs: [
+      // Defina os campos de entrada
+    ],
+    materials: [
+      // Defina os materiais
+    ],
+    labor: [
+      // Defina a mão de obra
+    ]
+  }
+];
+```
+
+## 🚀 Scripts Disponíveis
+
+```bash
+# Desenvolvimento
+npm run dev
+
+# Build para produção
+npm run build
+
+# Preview da build
+npm run preview
+
+# Linting
+npm run lint
+
+# Build de desenvolvimento
+npm run build:dev
+```
+
+## 📱 Responsividade
+
+O sistema é totalmente responsivo e funciona em:
+- 📱 **Mobile**: Smartphones e tablets
+- 💻 **Desktop**: Computadores e notebooks
+- 🖥️ **Tablet**: Tablets em modo paisagem e retrato
+
+## 🎨 Temas
+
+O sistema suporta:
+- 🌞 **Tema Claro**: Padrão
+- 🌙 **Tema Escuro**: Para ambientes com pouca luz
+- 🔄 **Auto**: Segue a preferência do sistema
+
+## 🔒 Validação
+
+Todos os formulários possuem validação robusta:
+- ✅ Campos obrigatórios
+- ✅ Tipos de dados corretos
+- ✅ Limites mínimos e máximos
+- ✅ Feedback visual em tempo real
+- ✅ Mensagens de erro claras
+
+## 📊 Persistência
+
+Os dados são salvos automaticamente:
+- 💾 **LocalStorage**: Orçamentos e configurações
+- 🔄 **Sincronização**: Entre abas do navegador
+- 📤 **Exportação**: Múltiplos formatos
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 📞 Suporte
+
+- 📧 **Email**: contato@obracalculada.com
+- 🌐 **Website**: https://obracalculada.com
+- 📱 **WhatsApp**: +55 (11) 99999-9999
+
+## 🙏 Agradecimentos
+
+- [shadcn/ui](https://ui.shadcn.com/) - Componentes UI incríveis
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
+- [Lucide React](https://lucide.dev/) - Ícones bonitos
+- [Zod](https://zod.dev/) - Validação de esquemas
+- [React Query](https://tanstack.com/query) - Gerenciamento de estado
+
+---
+
+**Desenvolvido com ❤️ para a construção civil brasileira**
