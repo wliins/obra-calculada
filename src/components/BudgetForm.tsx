@@ -19,11 +19,11 @@ const BudgetForm = ({ onCalculate, isLoading = false, initialData = {} }: Budget
   const [formData, setFormData] = useState<ProjectData>({
     projectName: "",
     clientName: "",
-    projectType: "",
-    area: "",
-    rooms: "",
-    bathrooms: "",
-    floors: "",
+    projectType: "house",
+    area: 0,
+    rooms: 0,
+    bathrooms: 0,
+    floors: 1,
     description: "",
     ...initialData
   });

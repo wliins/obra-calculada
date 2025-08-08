@@ -60,7 +60,7 @@ RESUMO:
 Materiais: ${formatCurrency(result.totalMaterials)}
 Mão de obra: ${formatCurrency(result.totalLabor)}
 TOTAL: ${formatCurrency(result.total)}
-Valor por m²: ${formatCurrency(result.total / parseFloat(projectData.area))}
+Valor por m²: ${formatCurrency(result.total / Number(projectData.area))}
     `.trim();
 
     try {
@@ -118,7 +118,7 @@ Valor por m²: ${formatCurrency(result.total / parseFloat(projectData.area))}
               </p>
             </div>
             <p className="text-sm text-muted-foreground mt-1">
-              ~{formatCurrency(result.total / parseFloat(projectData.area))} por m²
+              ~{formatCurrency(result.total / Number(projectData.area))} por m²
             </p>
           </div>
         </CardContent>
